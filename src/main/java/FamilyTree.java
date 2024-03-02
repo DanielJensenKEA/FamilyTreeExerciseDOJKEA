@@ -7,6 +7,7 @@ public class FamilyTree {
     // Når et familietræ skabes, kalder den sin metode buildTree.
     // Kald metoden i konstruktøren.
     public FamilyTree() {
+        buildTree();
 
     }
 
@@ -23,20 +24,45 @@ public class FamilyTree {
     // Lav derefter to nye person objekter, der repræsenterer farens mor og fra
 
     // Sidst så tilskriv den pågældendes person, som repræsenterer den person træet skal laves på baggrund af, til variablen current.
+        Person hans = new Person("Hans");
+        //Hans' forældre
+        Person dorte = new Person("Dorte");
+        Person phillip = new Person("Phillip");
+
+        //Dortes forældre
+        Person martin = new Person("Martin");
+        Person miriam = new Person("Miriam");
+
+        //Phillips forældre
+        Person konrad = new Person("Konrad");
+        Person laura = new Person("Laura");
+
+        hans.setFather(phillip);
+        hans.setMother(dorte);
+        current = hans;
 
     }
     public String getCurrentName() {
+        return current.getName();
 
     }
 
     // Skriv kommentarer til følgende metode, der beskriver hvad den gør
+    //Metode med String parent som parameter. If-sætning => Hvis parent er lige med "mother" vil den bruge mothers getter metode
+    //til at returnere dennes stringnavn. Hvis denne if-sætning ikke opfyldes, returneres fathers navn gennem getter-metode.
     public String lookUpParentName(String parent) {
+
         if (parent.equals("mother")) {
             return current.getMother().getName();
-        } else return current.getFather().getName();
+        }
+        else {
+            return current.getFather().getName();
+        }
     }
 
     // Skriv kommentarer til følgende metode, der beskriver hvad den gør
+    //Tager String ancestor som parameter. "Vælger" eller returnerer current variablens mor, hvis ifsætning opfyldes.
+    //Else returnerer current variablens far.
     public void moveToAncestor(String ancestor) {
         if (ancestor.equals("mother")) {
             current = current.getMother();
